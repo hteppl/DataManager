@@ -1,0 +1,5 @@
+*.iml
+/.idea/
+/src/test/
+/target/
+dependency-reduced-pom.xml

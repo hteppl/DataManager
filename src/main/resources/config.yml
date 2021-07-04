@@ -1,0 +1,5 @@
+# default folder for saving sqlite tables
+sqlite: database
+
+# mysql server timezone
+mysql-timezone: UTC

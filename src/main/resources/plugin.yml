@@ -1,0 +1,6 @@
+name: DataManager
+main: me.hteppl.DataManager
+version: "${pom.version}"
+api: 1.0.13
+author: hteppl
+website: https://github.com/hteppl/DataManager
