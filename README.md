@@ -5,4 +5,4 @@ Simple plugin for PowerNukkit Minecraft Bedrock core, that will help you to crea
 <br/>
 <br/>
 #### PowerNukkit: https://github.com/PowerNukkit/PowerNukkit
-#### sq2o: https://github.com/aaberg/sql2o
+#### sql2o: https://github.com/aaberg/sql2o
