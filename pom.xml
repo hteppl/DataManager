@@ -15,17 +15,16 @@
     <build>
         <resources>
             <resource>
-                <targetPath>.</targetPath>
-                <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
+                <filtering>true</filtering>
+                <targetPath>.</targetPath>
                 <includes>
                     <include>plugin.yml</include>
                 </includes>
             </resource>
             <resource>
-                <targetPath>.</targetPath>
-                <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
+                <targetPath>.</targetPath>
                 <includes>
                     <include>config.yml</include>
                 </includes>
