@@ -1,5 +1,6 @@
 package me.hteppl;
 
+import cn.nukkit.Server;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import org.sql2o.Sql2o;
@@ -18,7 +19,7 @@ public class DataManager extends PluginBase {
         this.saveDefaultConfig();
         Config config = this.getConfig();
 
-        sqliteFolder = config.getString("sqlite");
+        sqliteFolder = Server.getInstance().getFilePath() + config.getString("sqlite");
         mysqlTimezone = config.getString("mysql-timezone");
 
         new File(sqliteFolder).mkdirs();
