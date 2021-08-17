@@ -17,7 +17,10 @@ public class SQLiteDatabase implements Sql2oDatabase {
 
     public SQLiteDatabase(String dbName, String scheme) {
         this.database = DataManager.getSQLiteConnection(dbName);
+        this.executeScheme(scheme);
+    }
 
+    public void executeScheme(String scheme) {
         if (scheme != null) {
             try (java.sql.Connection connection = this.getConnection().getJdbcConnection(); Statement statement = connection.createStatement()) {
                 statement.executeUpdate(scheme);
