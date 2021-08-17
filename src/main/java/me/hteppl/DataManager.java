@@ -13,6 +13,8 @@ public class DataManager extends PluginBase {
 
     private static String mysqlTimezone;
 
+    public static int mysqlValidation;
+
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public void onEnable() {
@@ -21,6 +23,7 @@ public class DataManager extends PluginBase {
 
         sqliteFolder = Server.getInstance().getFilePath() + config.getString("sqlite");
         mysqlTimezone = config.getString("mysql-timezone");
+        mysqlValidation = config.getInt("mysql-validation");
 
         new File(sqliteFolder).mkdirs();
     }
