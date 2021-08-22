@@ -33,4 +33,8 @@ public class SQLiteDatabase implements Sql2oDatabase {
     public Connection getConnection() {
         return this.database.open();
     }
+
+    public Sql2o getDatabase() {
+        return this.database;
+    }
 }

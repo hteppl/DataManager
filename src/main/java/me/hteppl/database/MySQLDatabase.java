@@ -28,4 +28,8 @@ public class MySQLDatabase implements Sql2oDatabase {
 
         return this.connection;
     }
+
+    public Sql2o getDatabase() {
+        return this.database;
+    }
 }
