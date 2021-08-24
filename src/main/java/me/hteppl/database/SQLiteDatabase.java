@@ -12,11 +12,15 @@ public class SQLiteDatabase implements Sql2oDatabase {
     private final Sql2o database;
 
     public SQLiteDatabase(String dbName) {
-        this(dbName, null);
+        this.database = DataManager.getSQLiteConnection(dbName);
     }
 
-    public SQLiteDatabase(String dbName, String scheme) {
-        this.database = DataManager.getSQLiteConnection(dbName);
+    public SQLiteDatabase(String dbName, String folder) {
+        this(dbName, null, folder);
+    }
+
+    public SQLiteDatabase(String dbName, String scheme, String folder) {
+        this.database = DataManager.getSQLiteConnection(dbName, folder);
         this.executeScheme(scheme);
     }
 

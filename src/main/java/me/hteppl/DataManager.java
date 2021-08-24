@@ -51,9 +51,13 @@ public class DataManager extends PluginBase {
     }
 
     public static Sql2o getSQLiteConnection(String database) {
+        return getSQLiteConnection(database, sqliteFolder);
+    }
+
+    public static Sql2o getSQLiteConnection(String database, String folder) {
         try {
             Class.forName("org.sqlite.JDBC");
-            return new Sql2o("jdbc:sqlite:" + sqliteFolder + "/" + database + ".db", null, null);
+            return new Sql2o("jdbc:sqlite:" + folder + "/" + database + ".db", null, null);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
