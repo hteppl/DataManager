@@ -1,4 +1,4 @@
-package me.hteppl;
+package me.hteppl.data;
 
 import org.sql2o.Connection;
 

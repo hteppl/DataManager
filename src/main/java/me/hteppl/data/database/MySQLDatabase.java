@@ -1,7 +1,7 @@
-package me.hteppl.database;
+package me.hteppl.data.database;
 
-import me.hteppl.DataManager;
-import me.hteppl.Sql2oDatabase;
+import me.hteppl.data.DataManager;
+import me.hteppl.data.Sql2oDatabase;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 

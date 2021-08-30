@@ -1,5 +1,5 @@
 name: DataManager
-main: me.hteppl.DataManager
+main: me.hteppl.data.DataManager
 version: "${pom.version}"
 api: 1.0.13
 author: hteppl

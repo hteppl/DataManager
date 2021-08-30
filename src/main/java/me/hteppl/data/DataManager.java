@@ -1,4 +1,4 @@
-package me.hteppl;
+package me.hteppl.data;
 
 import cn.nukkit.Server;
 import cn.nukkit.plugin.PluginBase;
