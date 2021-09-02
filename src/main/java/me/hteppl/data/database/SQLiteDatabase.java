@@ -16,12 +16,7 @@ public class SQLiteDatabase implements Sql2oDatabase {
     }
 
     public SQLiteDatabase(String dbName, String folder) {
-        this(dbName, null, folder);
-    }
-
-    public SQLiteDatabase(String dbName, String scheme, String folder) {
         this.database = DataManager.getSQLiteConnection(dbName, folder);
-        this.executeScheme(scheme);
     }
 
     public void executeScheme(String scheme) {

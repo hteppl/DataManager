@@ -6,4 +6,6 @@ public interface Sql2oDatabase {
 
     Connection getConnection();
 
+    void executeScheme(String scheme);
+
 }

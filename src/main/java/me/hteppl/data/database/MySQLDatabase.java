@@ -5,6 +5,8 @@ import me.hteppl.data.Sql2oDatabase;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.sql.Statement;
+
 public class MySQLDatabase implements Sql2oDatabase {
 
     private final Sql2o database;
@@ -27,6 +29,16 @@ public class MySQLDatabase implements Sql2oDatabase {
         }
 
         return this.connection;
+    }
+
+    public void executeScheme(String scheme) {
+        if (scheme != null) {
+            try (java.sql.Connection connection = this.getConnection().getJdbcConnection(); Statement statement = connection.createStatement()) {
+                statement.executeUpdate(scheme);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
     }
 
     public Sql2o getDatabase() {
