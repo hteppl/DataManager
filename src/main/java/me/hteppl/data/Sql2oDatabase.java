@@ -8,4 +8,6 @@ public interface Sql2oDatabase {
 
     void executeScheme(String scheme);
 
+    String getDbName();
+
 }

@@ -11,7 +11,7 @@ public class DataManager extends PluginBase {
 
     private static String sqliteFolder;
 
-    private static String mysqlTimezone;
+    private static String mysqlFlags;
 
     public static int mysqlValidation;
 
@@ -22,7 +22,7 @@ public class DataManager extends PluginBase {
         Config config = this.getConfig();
 
         sqliteFolder = Server.getInstance().getFilePath() + config.getString("sqlite");
-        mysqlTimezone = config.getString("mysql-timezone");
+        mysqlFlags = config.getString("mysql-flags");
         mysqlValidation = config.getInt("mysql-validation");
 
         new File(sqliteFolder).mkdirs();
@@ -39,8 +39,7 @@ public class DataManager extends PluginBase {
             StringBuilder url = new StringBuilder(host);
             if (port >= 0) url.append(":").append(port);
             url.append("/").append(database)
-                    .append("?useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=")
-                    .append(mysqlTimezone);
+                    .append("?").append(mysqlFlags);
 
             return new Sql2o("jdbc:mysql://" + url, user, password);
         } catch (Exception exception) {

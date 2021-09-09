@@ -11,11 +11,15 @@ public class SQLiteDatabase implements Sql2oDatabase {
 
     private final Sql2o database;
 
+    private final String dbName;
+
     public SQLiteDatabase(String dbName) {
+        this.dbName = dbName;
         this.database = DataManager.getSQLiteConnection(dbName);
     }
 
     public SQLiteDatabase(String dbName, String folder) {
+        this.dbName = dbName;
         this.database = DataManager.getSQLiteConnection(dbName, folder);
     }
 
@@ -35,5 +39,9 @@ public class SQLiteDatabase implements Sql2oDatabase {
 
     public Sql2o getDatabase() {
         return this.database;
+    }
+
+    public String getDbName() {
+        return dbName;
     }
 }

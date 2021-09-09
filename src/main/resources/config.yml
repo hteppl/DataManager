@@ -1,8 +1,8 @@
-# default folder for saving sqlite tables
+# default folder for saving sqlite tables (near worlds, plugins, etc.)
 sqlite: database
 
-# mysql server timezone
-mysql-timezone: UTC
+# mysql connection flags
+mysql-flags: useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC
 
 # mysql connection validation (in seconds)
 mysql-validation: 20

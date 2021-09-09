@@ -13,7 +13,10 @@ public class MySQLDatabase implements Sql2oDatabase {
 
     private Connection connection;
 
+    private final String dbName;
+
     public MySQLDatabase(String database, String host, String user, String password) {
+        this.dbName = database;
         this.database = DataManager.getMySQLConnection(database, host, user, password);
         this.connection = this.database.open();
     }
@@ -43,5 +46,9 @@ public class MySQLDatabase implements Sql2oDatabase {
 
     public Sql2o getDatabase() {
         return this.database;
+    }
+
+    public String getDbName() {
+        return dbName;
     }
 }
