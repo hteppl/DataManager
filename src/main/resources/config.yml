@@ -5,4 +5,4 @@ sqlite: database
 mysql-flags: useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC
 
 # mysql connection validation (in seconds)
-mysql-validation: 20
+mysql-validation: 10
