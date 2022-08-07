@@ -11,5 +11,7 @@ public class MySQLDatabase extends Sql2oDatabase {
 
     public MySQLDatabase(String host, int port, String database, String user, String password) {
         super(Utils.createSql2oForMySQL(host, port, database, user, password));
+
+        this.executeScheme("CREATE DATABASE IF NOT EXISTS " + database);
     }
 }

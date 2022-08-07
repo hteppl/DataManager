@@ -11,13 +11,13 @@ public abstract class Sql2oDatabase {
         this.sql2o = sql2o;
     }
 
-    protected Connection open() {
+    protected Connection connect() {
         return this.sql2o.open();
     }
 
     protected void executeScheme(String scheme) {
         if (scheme != null && !scheme.isEmpty()) {
-            try (Connection connection = this.open()) {
+            try (Connection connection = this.connect()) {
                 connection.createQuery(scheme).executeUpdate();
             }
         }
