@@ -1,16 +1,17 @@
 package me.hteppl.data.database;
 
-import me.hteppl.data.Sql2oDatabase;
-import me.hteppl.data.util.Utils;
+import me.hteppl.data.DataManager;
+import me.hteppl.data.Database;
+import org.jdbi.v3.core.Jdbi;
 
-public class MySQLDatabase extends Sql2oDatabase {
+public class MySQLDatabase extends Database {
 
     public MySQLDatabase(String host, String database, String user, String password) {
         this(host, 3306, database, user, password);
     }
 
     public MySQLDatabase(String host, int port, String database, String user, String password) {
-        super(Utils.createSql2oForMySQL(host, port, database, user, password));
+        super(Jdbi.create("jdbc:mysql://" + host + ":" + port + "/" + database + "?" + DataManager.mysqlProperties, user, password));
 
         this.executeScheme("CREATE DATABASE IF NOT EXISTS " + database);
     }
