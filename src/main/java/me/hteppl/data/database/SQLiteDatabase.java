@@ -1,47 +1,25 @@
 package me.hteppl.data.database;
 
-import me.hteppl.data.DataManager;
-import me.hteppl.data.Sql2oDatabase;
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
+import me.hteppl.data.Database;
+import org.jdbi.v3.core.Jdbi;
 
-import java.sql.Statement;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-public class SQLiteDatabase implements Sql2oDatabase {
+public class SQLiteDatabase extends Database {
 
-    private final Sql2o database;
-
-    private final String dbName;
-
-    public SQLiteDatabase(String dbName) {
-        this.dbName = dbName;
-        this.database = DataManager.getSQLiteConnection(dbName);
+    public SQLiteDatabase(String database) {
+        this("databases", database);
     }
 
-    public SQLiteDatabase(String dbName, String folder) {
-        this.dbName = dbName;
-        this.database = DataManager.getSQLiteConnection(dbName, folder);
-    }
+    public SQLiteDatabase(String folder, String database) {
+        super(Jdbi.create("jdbc:sqlite:" + folder + "/" + database + ".db"));
 
-    public void executeScheme(String scheme) {
-        if (scheme != null) {
-            try (java.sql.Connection connection = this.getConnection().getJdbcConnection(); Statement statement = connection.createStatement()) {
-                statement.executeUpdate(scheme);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
+        try {
+            Files.createDirectories(Paths.get(folder));
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
         }
-    }
-
-    public Connection getConnection() {
-        return this.database.open();
-    }
-
-    public Sql2o getDatabase() {
-        return this.database;
-    }
-
-    public String getDbName() {
-        return dbName;
     }
 }
