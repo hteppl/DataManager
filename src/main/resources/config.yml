@@ -1,2 +1,6 @@
+# default folder for saving sqlite tables (near worlds, plugins, etc.)
+# leave it empty if you don't want to use sqlite and create a folder
+sqlite-folder: "database"
+
 # mysql connection properties
 mysql-properties: useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC

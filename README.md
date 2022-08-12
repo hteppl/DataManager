@@ -1,6 +1,6 @@
 # DataManager
 
-DataManager is a simple library plugin Nukkit and PowerNukkit Minecraft Bedrock core, that will help you to create your JDBI
+DataManager is a simple library plugin for PowerNukkit Minecraft Bedrock core, that will help you to create your JDBI
 connections with ease (SQLite and MySQL).
 
 [**GitHub Releases**](https://github.com/hteppl/DataManager/releases)
