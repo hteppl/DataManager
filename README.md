@@ -57,7 +57,7 @@ After that, you can easily do what you want with your [*JDBI*](https://jdbi.org)
 
 ```java
 import me.hteppl.data.Database;
-import /* your database class */
+/* import your database class */
 
 public class Main {
 
