@@ -19,7 +19,6 @@ public class SQLiteDatabase extends Database {
 
         try {
             Class.forName("org.sqlite.JDBC");
-
             Files.createDirectories(Paths.get(folder));
         } catch (IOException | ClassNotFoundException exception) {
             throw new RuntimeException(exception);
