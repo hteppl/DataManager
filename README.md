@@ -21,7 +21,9 @@ configure some database settings in config.yml file, that plugin will create in 
 
 ## How to create your JDBI database
 
-Here is example of your mysql database:
+Firstly we recommend to read [*JDBI Documentation*](https://jdbi.org)
+
+Here is very basic example of your MySQL database class:
 
 ```java
 import me.hteppl.data.database.MySQLDatabase;
@@ -36,7 +38,7 @@ public class MyDatabase extends MySQLDatabase {
 }
 ```
 
-or sqlite database:
+or SQLite database class:
 
 ```java
 import me.hteppl.data.database.SQLiteDatabase;
@@ -47,6 +49,21 @@ public class MyDatabase extends SQLiteDatabase {
         super("database");
         // also you can execute your db scheme with 
         // this.executeScheme("scheme");
+    }
+}
+```
+
+After that, you can easily do what you want with your [*JDBI*](https://jdbi.org) connections
+
+```java
+import me.hteppl.data.Database;
+import /* your database class */
+
+public class Main {
+
+    public static void main(String[] args) {
+        Database db = new MyDatabase();
+        db.getHandle().createQuery(...);
     }
 }
 ```
