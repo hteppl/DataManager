@@ -14,6 +14,16 @@ huge amount of features like water-logging, all new blocks, more plugin events, 
 
 [**JDBI**](https://jdbi.org) is small useful framework that makes coding for database easy.
 
+## Performance of SELECT
+
+Execute 1000 SELECT statements against a DB and map the data returned to a POJO.
+
+| Method                                   | Duration          |
+|------------------------------------------|-------------------|
+| Hand coded <code>ResultSet</code>        | 15ms              |
+| [Sql2o](https://github.com/aaberg/sql2o) | 24ms (60% slower) |
+| [JDBI](https://github.com/jdbi/jdbi)     | 26ms (73% slower) |
+
 ## How to use plugin
 
 If any plugin requires a DataManager you just need to download and install it. Usually it will be enough. Also, you can
@@ -30,11 +40,11 @@ import me.hteppl.data.database.MySQLDatabase;
 
 public class MyDatabase extends MySQLDatabase {
 
-    public MyDatabase() {
-        super("host", "database", "user", "password");
-        // also you can execute your db scheme with 
-        // this.executeScheme("scheme");
-    }
+	public MyDatabase() {
+		super("host", "database", "user", "password");
+		// also you can execute your db scheme with 
+		// this.executeScheme("scheme");
+	}
 }
 ```
 
@@ -45,11 +55,11 @@ import me.hteppl.data.database.SQLiteDatabase;
 
 public class MyDatabase extends SQLiteDatabase {
 
-    public MyDatabase() {
-        super("database");
-        // also you can execute your db scheme with 
-        // this.executeScheme("scheme");
-    }
+	public MyDatabase() {
+		super("database");
+		// also you can execute your db scheme with 
+		// this.executeScheme("scheme");
+	}
 }
 ```
 
@@ -61,9 +71,9 @@ import me.hteppl.data.Database;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Database db = new MyDatabase();
-        db.getHandle().createQuery(...);
-    }
+	public static void main(String[] args) {
+		MyDatabase db = new MyDatabase();
+		db.getHandle().createQuery(...)
+	}
 }
 ```
