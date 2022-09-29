@@ -40,11 +40,11 @@ import me.hteppl.data.database.MySQLDatabase;
 
 public class MyDatabase extends MySQLDatabase {
 
-	public MyDatabase() {
-		super("host", "database", "user", "password");
-		// also you can execute your db scheme with 
-		// this.executeScheme("scheme");
-	}
+    public MyDatabase() {
+        super("host", "database", "user", "password");
+        // also you can execute your db scheme with 
+        // this.executeScheme("scheme");
+    }
 }
 ```
 
@@ -55,11 +55,11 @@ import me.hteppl.data.database.SQLiteDatabase;
 
 public class MyDatabase extends SQLiteDatabase {
 
-	public MyDatabase() {
-		super("database");
-		// also you can execute your db scheme with 
-		// this.executeScheme("scheme");
-	}
+    public MyDatabase() {
+        super("database");
+        // also you can execute your db scheme with
+        // this.executeScheme("scheme");
+    }
 }
 ```
 
@@ -71,9 +71,9 @@ import me.hteppl.data.Database;
 
 public class Main {
 
-	public static void main(String[] args) {
-		MyDatabase db = new MyDatabase();
-		db.getHandle().createQuery(...)
-	}
+    public static void main(String[] args) {
+        MyDatabase db = new MyDatabase();
+        db.getHandle().createQuery(...);
+    }
 }
 ```
