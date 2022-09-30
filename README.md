@@ -29,7 +29,7 @@ Execute 1000 SELECT statements against a DB and map the data returned to a POJO.
 If any plugin requires a DataManager you just need to download and install it. Usually it will be enough. Also, you can
 configure some database settings in config.yml file, that plugin will create in `plugins` folder.
 
-## How to create your JDBI database
+## How to create your Sql2o database
 
 Firstly we recommend to read [*Sql2o Documentation*](https://www.sql2o.org)
 
@@ -72,8 +72,8 @@ import me.hteppl.data.Database;
 public class Main {
 
     public static void main(String[] args) {
-        MyDatabase db = new MyDatabase();
-        db.getHandle().createQuery(...);
+        Database db = new MyDatabase();
+        db.getConnection().createQuery(...);
     }
 }
 ```
