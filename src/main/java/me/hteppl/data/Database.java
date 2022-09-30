@@ -1,32 +1,24 @@
 package me.hteppl.data;
 
 import lombok.Getter;
-import org.jdbi.v3.core.Handle;
-import org.jdbi.v3.core.Jdbi;
+import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 public abstract class Database {
 
     @Getter
-    private final Jdbi jdbi;
-    private Handle handle;
+    protected final Connection connection;
+    @Getter
+    private final Sql2o sql2o;
 
-    public Database(Jdbi jdbi) {
-        this.jdbi = jdbi;
-        this.connect();
-    }
-
-    protected void connect() {
-        this.handle = this.jdbi.open();
-    }
-
-    public Handle getHandle() {
-        if (this.handle.isClosed()) this.connect();
-        return this.handle;
+    public Database(Sql2o sql2o) {
+        this.sql2o = sql2o;
+        this.connection = sql2o.open();
     }
 
     protected void executeScheme(String scheme) {
         if (scheme != null && !scheme.isEmpty()) {
-            this.getHandle().createUpdate(scheme).execute();
+            this.connection.createQuery(scheme).executeUpdate();
         }
     }
 }

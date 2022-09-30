@@ -3,4 +3,4 @@
 sqlite-folder: "database"
 
 # mysql connection properties
-mysql-properties: useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC
+mysql-properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"

@@ -1,6 +1,6 @@
 # DataManager
 
-DataManager is a simple library plugin for PowerNukkit Minecraft Bedrock core, that will help you to create your JDBI
+DataManager is a simple library plugin for PowerNukkit Minecraft Bedrock core, that will help you to create your Sql2o
 connections with ease (SQLite and MySQL).
 
 [**GitHub Releases**](https://github.com/hteppl/DataManager/releases)
@@ -12,7 +12,7 @@ Example project: [DMExample](https://github.com/hteppl/DMExample)
 [**PowerNukkit**](https://github.com/PowerNukkit/PowerNukkit) is a modified version of Nukkit that adds support to a
 huge amount of features like water-logging, all new blocks, more plugin events, offhand slot, bug fixes and many more.
 
-[**JDBI**](https://jdbi.org) is small useful framework that makes coding for database easy.
+[**Sql2o**](https://www.sql2o.org) is small useful framework that makes coding for database easy.
 
 ## Performance of SELECT
 
@@ -31,7 +31,7 @@ configure some database settings in config.yml file, that plugin will create in 
 
 ## How to create your JDBI database
 
-Firstly we recommend to read [*JDBI Documentation*](https://jdbi.org)
+Firstly we recommend to read [*Sql2o Documentation*](https://www.sql2o.org)
 
 Here is very basic example of your MySQL database class:
 
@@ -63,7 +63,7 @@ public class MyDatabase extends SQLiteDatabase {
 }
 ```
 
-After that, you can easily do what you want with your [*JDBI*](https://jdbi.org) connections
+After that, you can easily do what you want with your [*Sql2o*](https://www.sql2o.org) connections
 
 ```java
 import me.hteppl.data.Database;

@@ -2,7 +2,7 @@ package me.hteppl.data.database;
 
 import me.hteppl.data.DataManager;
 import me.hteppl.data.Database;
-import org.jdbi.v3.core.Jdbi;
+import org.sql2o.Sql2o;
 
 public class MySQLDatabase extends Database {
 
@@ -11,7 +11,7 @@ public class MySQLDatabase extends Database {
     }
 
     public MySQLDatabase(String host, int port, String database, String user, String password) {
-        super(Jdbi.create("jdbc:mysql://" + host + ":" + port + "/" + database + "?" + DataManager.getMysqlProperties(), user, password));
+        super(new Sql2o("jdbc:mysql://" + host + ":" + port + "/" + database + "?" + DataManager.getMysqlProperties(), user, password));
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
