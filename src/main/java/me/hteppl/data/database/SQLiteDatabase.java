@@ -20,9 +20,9 @@ public class SQLiteDatabase extends Database {
 
     private static Sql2o createSql2o(String folder, String database) {
         try {
-            Files.createDirectories(Paths.get(folder));
-
             Class.forName("org.sqlite.JDBC");
+
+            Files.createDirectories(Paths.get(folder));
         } catch (IOException | ClassNotFoundException exception) {
             throw new RuntimeException(exception);
         }

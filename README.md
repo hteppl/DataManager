@@ -22,7 +22,6 @@ Execute 1000 SELECT statements against a DB and map the data returned to a POJO.
 |------------------------------------------|-------------------|
 | Hand coded <code>ResultSet</code>        | 15ms              |
 | [Sql2o](https://github.com/aaberg/sql2o) | 24ms (60% slower) |
-| [JDBI](https://github.com/jdbi/jdbi)     | 26ms (73% slower) |
 
 ## How to use plugin
 
@@ -37,13 +36,24 @@ Here is very basic example of your MySQL database class:
 
 ```java
 import me.hteppl.data.database.MySQLDatabase;
+import org.sql2o.Connection;
 
 public class MyDatabase extends MySQLDatabase {
 
     public MyDatabase() {
         super("host", "database", "user", "password");
-        // also you can execute your db scheme with 
-        // this.executeScheme("scheme");
+        // also you can execute your db scheme with
+        this.executeScheme("scheme");
+
+        // or use createConnection() method
+        try (Connection connection = this.createConnection()) {
+            connection.createQuery("query").executeUpdate();
+        }
+
+        // if you need disable auto commit, use createTransaction() method
+        try (Connection connection = this.createTransaction()) {
+            connection.createQuery("query").executeUpdate();
+        }
     }
 }
 ```
@@ -52,13 +62,24 @@ or SQLite database class:
 
 ```java
 import me.hteppl.data.database.SQLiteDatabase;
+import org.sql2o.Connection;
 
 public class MyDatabase extends SQLiteDatabase {
 
     public MyDatabase() {
         super("database");
         // also you can execute your db scheme with
-        // this.executeScheme("scheme");
+        this.executeScheme("scheme");
+
+        // or use createConnection() method
+        try (Connection connection = this.createConnection()) {
+            connection.createQuery(...).executeUpdate();
+        }
+
+        // if you need disable auto commit, use createTransaction() method
+        try (Connection connection = this.createTransaction()) {
+            connection.createQuery(...).executeUpdate();
+        }
     }
 }
 ```
@@ -66,14 +87,18 @@ public class MyDatabase extends SQLiteDatabase {
 After that, you can easily do what you want with your [*Sql2o*](https://www.sql2o.org) connections
 
 ```java
-import me.hteppl.data.Database;
 /* import your database class */
 
 public class Main {
 
     public static void main(String[] args) {
-        Database db = new MyDatabase();
-        db.getConnection().createQuery(...);
+        MyDatabase db = new MyDatabase();
+        try (Connection connection = db.createConnection()) {
+            connection.createQuery(...);
+        }
+        
+        // or
+        db.executeScheme("scheme");
     }
 }
 ```
