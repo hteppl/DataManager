@@ -26,7 +26,7 @@ Execute 1000 SELECT statements against a DB and map the data returned to a POJO.
 
 ## How to install
 
-If any plugin requires a DataManager you just need to download and install it. Usually it will be enough. Also, you can
+If any plugin requires a DataManager, you just need to download and install it. Usually it will be enough. Also, you can
 configure some default database settings in config.yml file, that plugin will create in `plugins` folder.
 
 ## Configuration
@@ -60,7 +60,7 @@ mysql:
 Firstly we recommend to read:
 
 - [*Sql2o Documentation*](https://github.com/aaberg/sql2o/wiki)
-- [*HikariCP Settings*](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby)
+- [*HikariCP Configuration*](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby)
 
 Here is very basic example of your MySQL database class:
 
