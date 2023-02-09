@@ -1,20 +1,20 @@
 package me.hteppl.data;
 
 import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.utils.Config;
 import lombok.Getter;
+import me.hteppl.data.utils.Settings;
 
 public class DataManager extends PluginBase {
 
     @Getter
-    private static String sqliteFolder, mysqlProperties;
+    private static DataManager instance;
+    @Getter
+    private static Settings settings;
 
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
-
-        Config config = this.getConfig();
-        sqliteFolder = config.getString("sqlite-folder");
-        mysqlProperties = config.getString("mysql-properties");
+        instance = this;
+        settings = new Settings(this.getConfig());
     }
 }

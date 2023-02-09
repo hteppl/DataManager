@@ -13,21 +13,21 @@ public abstract class Database {
 
     public void executeScheme(String scheme) {
         if (scheme != null && !scheme.isEmpty()) {
-            try (Connection connection = this.createConnection()) {
+            try (Connection connection = this.openConnection()) {
                 connection.createQuery(scheme).executeUpdate();
             }
         }
     }
 
-    public Connection createConnection() {
+    public Connection openConnection() {
         return this.sql2o.open();
     }
 
-    public Connection createTransaction() {
+    public Connection beginTransaction() {
         return this.sql2o.beginTransaction();
     }
 
-    public Connection createTransaction(int isolationLevel) {
+    public Connection beginTransaction(int isolationLevel) {
         return this.sql2o.beginTransaction(isolationLevel);
     }
 }

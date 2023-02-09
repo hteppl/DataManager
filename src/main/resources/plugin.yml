@@ -3,5 +3,7 @@ main: me.hteppl.data.DataManager
 version: "${pom.version}"
 api: 1.0.13
 load: STARTUP
-author: hteppl
-website: https://github.com/hteppl/DataManager
+authors:
+  - "https://github.com/hteppl"
+  - "https://github.com/IWareQ"
+website: "https://github.com/hteppl/DataManager"
