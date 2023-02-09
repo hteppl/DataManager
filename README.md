@@ -45,7 +45,7 @@ enough. Also, you can configure some default database settings in `config.yml`.
 <dependency>
     <groupId>com.github.hteppl</groupId>
     <artifactId>DataManager</artifactId>
-    <version>2.0.6-SNAPSHOT</version>
+    <version>2.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -61,7 +61,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.hteppl:DataManager:2.0.6-SNAPSHOT'
+    implementation 'com.github.hteppl:DataManager:2.1.0-SNAPSHOT'
 }
 ```
 
