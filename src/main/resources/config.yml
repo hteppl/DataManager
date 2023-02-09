@@ -2,7 +2,7 @@
 sqlite:
   # use global folder for saving sqlite tables (near plugins, worlds, etc.) or plugin folder
   global: true
-  # name for folder if you use setted global to true
+  # name for folder if "global" is set to true
   folder-name: "database"
 
 # mysql settings
