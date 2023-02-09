@@ -1,6 +1,7 @@
 # DataManager
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![jitpack](https://jitpack.io/v/hteppl/DataManager.svg)](https://jitpack.io/#hteppl/DataManager)
 
 DataManager is a simple library plugin for Nukkit Minecraft Bedrock core (and forks), that will help you to create and
 manage your SQL connections with ease.
@@ -26,12 +27,47 @@ Execute 1000 SELECT statements against a DB and map the data returned to a POJO.
 
 ## How to install
 
-If any plugin requires a DataManager, you just need to download and install it. Usually it will be enough. Also, you can
-configure some default database settings in config.yml file, that plugin will create in `plugins` folder.
+If any plugin requires a DataManager, you just need to download and put it in `plugins` folder. Usually it will be
+enough. Also, you can configure some default database settings in `config.yml`.
+
+### Maven
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```xml
+<dependency>
+    <groupId>com.github.hteppl</groupId>
+    <artifactId>DataManager</artifactId>
+    <version>2.0.6-SNAPSHOT</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```groovy
+dependencies {
+    implementation 'com.github.hteppl:DataManager:2.0.6-SNAPSHOT'
+}
+```
 
 ## Configuration
 
-Default plugin config.yml settings.
+Default plugin `config.yml` settings.
 
 ```yaml
 # sqlite path settings for method SQLiteDatabase(String database)
@@ -45,7 +81,7 @@ sqlite:
 mysql:
   # default mysql connection properties
   properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
-  # HikariCP connection pool settings (https://github.com/brettwooldridge/HikariCP)
+  # Hikari connection pool settings (https://github.com/brettwooldridge/HikariCP)
   hikari:
     auto-commit: true
     connection-timeout: 30000

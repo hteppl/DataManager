@@ -9,7 +9,7 @@ sqlite:
 mysql:
   # default mysql connection properties
   properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
-  # HikariCP connection pool settings (https://github.com/brettwooldridge/HikariCP)
+  # Hikari connection pool settings (https://github.com/brettwooldridge/HikariCP)
   hikari:
     auto-commit: true
     connection-timeout: 30000
