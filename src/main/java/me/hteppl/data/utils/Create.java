@@ -2,62 +2,67 @@ package me.hteppl.data.utils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.extern.log4j.Log4j2;
 import me.hteppl.data.DataManager;
-import org.sql2o.Sql2o;
+import org.jdbi.v3.core.Jdbi;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+@Log4j2
 public class Create {
 
-    public static Sql2o createSQLite(String database) {
-        Settings.SQLiteSettings settings = DataManager.getSettings().getSqlite();
-        return createSQLite(
-                settings.isGlobal()
-                        ? settings.getFolderName()
-                        : DataManager.getInstance().getDataFolder().getPath(),
-                database
-        );
+    public static Jdbi createSQLite(String database) {
+        return createSQLite(DataManager.getSettings().getSqliteDirectory(), database);
     }
 
-    public static Sql2o createSQLite(String folder, String database) {
+    public static Jdbi createSQLite(String folder, String database) {
         try {
             Class.forName("org.sqlite.JDBC");
             Files.createDirectories(Paths.get(folder));
-        } catch (IOException | ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-
-        return new Sql2o("jdbc:sqlite:" + folder + "/" + database + ".db", null, null);
-    }
-
-    public static Sql2o createMySQL(String host, int port, String database, String user, String password) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("Error while trying to load SQLite driver", ex);
+        } catch (IOException ex) {
+            throw new RuntimeException("Error while trying to create " + folder, ex);
         }
 
-        HikariConfig config = new HikariConfig();
-        Settings.MySQLSettings settings = DataManager.getSettings().getMysql();
-        Settings.HikariSettings hikari = settings.getHikari();
-
-        config.setJdbcUrl("jdbc:mysql://" + host + ":" + port + "/" + database + "?" + settings.getProperties());
-        config.setUsername(user);
-        config.setPassword(password);
-        config.setAutoCommit(hikari.autoCommit);
-        config.setConnectionTimeout(hikari.connectionTimeout);
-        config.setIdleTimeout(hikari.idleTimeout);
-        config.setKeepaliveTime(hikari.keepaliveTime);
-        config.setMaxLifetime(hikari.maxLifetime);
-        config.setMaximumPoolSize(hikari.maximumPoolSize);
-
-        return createMySQL(new HikariDataSource(config));
+        return Jdbi.create("jdbc:sqlite:" + folder + "/" + database + ".db");
     }
 
-    public static Sql2o createMySQL(DataSource ds) {
-        return new Sql2o(ds);
+    public static Jdbi createMySQL(String host, int port, String database, String user, String password) {
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            throw new RuntimeException("Error while trying to load MariaDB driver", ex);
+        }
+
+        try {
+            var settings = DataManager.getSettings();
+            var hikari = settings.getHikari();
+            var config = new HikariConfig();
+
+            String properties = settings.getMysqlProperties();
+            properties = properties != null && !properties.trim().isEmpty() ? "?" + properties : "";
+
+            config.setJdbcUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + properties);
+            config.setUsername(user);
+            config.setPassword(password);
+            config.setAutoCommit(hikari.autoCommit);
+            config.setConnectionTimeout(hikari.connectionTimeout);
+            config.setIdleTimeout(hikari.idleTimeout);
+            config.setKeepaliveTime(hikari.keepaliveTime);
+            config.setMaxLifetime(hikari.maxLifetime);
+            config.setMaximumPoolSize(hikari.maximumPoolSize);
+
+            return createByDataSource(new HikariDataSource(config));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static Jdbi createByDataSource(DataSource ds) {
+        return Jdbi.create(ds);
     }
 }

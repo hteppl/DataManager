@@ -1,19 +1,15 @@
-# sqlite path settings for method SQLiteDatabase(String database)
-sqlite:
-  # use global folder for saving sqlite tables (near plugins, worlds, etc.) or plugin folder
-  global: true
-  # name for folder if "global" is set to true
-  folder-name: "database"
+# sqlite directory name for anonymous databases
+# set empty, for creating database file in plugin's folder by default
+sqlite-directory: "database"
 
-# mysql settings
-mysql:
-  # default mysql connection properties
-  properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
-  # Hikari connection pool settings (https://github.com/brettwooldridge/HikariCP)
-  hikari:
-    auto-commit: true
-    connection-timeout: 30000
-    idle-timeout: 600000
-    keepalive-time: 0
-    max-lifetime: 1800000
-    maximum-pool-size: 10
+# default mysql connection properties
+mysql-properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
+
+# Hikari connection pool settings (https://github.com/brettwooldridge/HikariCP)
+hikari:
+  auto-commit: true
+  connection-timeout: 30000
+  idle-timeout: 600000
+  keepalive-time: 0
+  max-lifetime: 1800000
+  maximum-pool-size: 10

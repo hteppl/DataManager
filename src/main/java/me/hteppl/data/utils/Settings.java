@@ -7,38 +7,18 @@ import lombok.Getter;
 @Getter
 public class Settings {
 
-    private final SQLiteSettings sqlite;
-    private final MySQLSettings mysql;
+    private final String sqliteDirectory;
+    private final String mysqlProperties;
+    private final HikariSettings hikari;
 
-    public Settings(Config config) {
-        this.sqlite = new SQLiteSettings(config.getSection("sqlite"));
-        this.mysql = new MySQLSettings(config.getSection("mysql"));
+    public Settings(Config config, String pluginPath) {
+        String dir = config.getString("sqlite-directory", "database");
+        this.sqliteDirectory = dir.trim().isEmpty() ? pluginPath : dir;
+        this.mysqlProperties = config.getString("mysql-properties");
+        this.hikari = new HikariSettings(config.getSection("hikari"));
     }
 
     @Getter
-    public static class SQLiteSettings {
-
-        private final boolean global;
-        private final String folderName;
-
-        public SQLiteSettings(ConfigSection section) {
-            this.global = section.getBoolean("global", true);
-            this.folderName = section.getString("folder-name", "database");
-        }
-    }
-
-    @Getter
-    public static class MySQLSettings {
-
-        private final String properties;
-        private final HikariSettings hikari;
-
-        public MySQLSettings(ConfigSection section) {
-            this.properties = section.getString("properties");
-            this.hikari = new HikariSettings(section.getSection("hikari"));
-        }
-    }
-
     public static class HikariSettings {
 
         public final boolean autoCommit;

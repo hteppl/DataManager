@@ -1,6 +1,5 @@
 package me.hteppl.data.database;
 
-import me.hteppl.data.Database;
 import me.hteppl.data.utils.Create;
 
 import javax.sql.DataSource;
@@ -16,6 +15,6 @@ public class MySQLDatabase extends Database {
     }
 
     public MySQLDatabase(DataSource ds) {
-        super(Create.createMySQL(ds));
+        super(Create.createByDataSource(ds));
     }
 }

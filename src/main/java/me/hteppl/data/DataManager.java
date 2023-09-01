@@ -7,14 +7,11 @@ import me.hteppl.data.utils.Settings;
 public class DataManager extends PluginBase {
 
     @Getter
-    private static DataManager instance;
-    @Getter
     private static Settings settings;
 
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
-        instance = this;
-        settings = new Settings(this.getConfig());
+        settings = new Settings(this.getConfig(), this.getDataFolder().getPath());
     }
 }
