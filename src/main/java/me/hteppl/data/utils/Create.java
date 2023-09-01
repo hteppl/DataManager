@@ -32,6 +32,10 @@ public class Create {
     }
 
     public static Jdbi createMySQL(String host, int port, String database, String user, String password) {
+        return createMySQL(host, port, database, user, password, null);
+    }
+
+    public static Jdbi createMySQL(String host, int port, String database, String user, String password, String properties) {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
@@ -43,8 +47,7 @@ public class Create {
             var hikari = settings.getHikari();
             var config = new HikariConfig();
 
-            String properties = settings.getMysqlProperties();
-            properties = properties != null && !properties.trim().isEmpty() ? "?" + properties : "";
+            properties = properties != null && !properties.trim().isEmpty() ? "?" + properties : settings.getMysqlProperties();
 
             config.setJdbcUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + properties);
             config.setUsername(user);

@@ -14,7 +14,7 @@ public class Settings {
     public Settings(Config config, String pluginPath) {
         String dir = config.getString("sqlite-directory", "database");
         this.sqliteDirectory = dir.trim().isEmpty() ? pluginPath : dir;
-        this.mysqlProperties = config.getString("mysql-properties");
+        this.mysqlProperties = config.getString("mysql-properties", "");
         this.hikari = new HikariSettings(config.getSection("hikari"));
     }
 

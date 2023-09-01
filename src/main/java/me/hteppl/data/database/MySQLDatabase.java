@@ -14,6 +14,10 @@ public class MySQLDatabase extends Database {
         super(Create.createMySQL(host, port, database, user, password));
     }
 
+    public MySQLDatabase(String host, int port, String database, String user, String password, String properties) {
+        super(Create.createMySQL(host, port, database, user, password, properties));
+    }
+
     public MySQLDatabase(DataSource ds) {
         super(Create.createByDataSource(ds));
     }
