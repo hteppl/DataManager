@@ -3,7 +3,7 @@
 sqlite-directory: "database"
 
 # default mysql connection properties
-mysql-properties: "useSSL=false&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
+mysql-properties: "sslMode=DISABLED&autoReconnect=true&useUnicode=true&serverTimezone=UTC"
 
 # Hikari connection pool settings (https://github.com/brettwooldridge/HikariCP)
 hikari:
