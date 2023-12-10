@@ -95,7 +95,7 @@
         <dependency>
             <groupId>cn.powernukkitx</groupId>
             <artifactId>powernukkitx</artifactId>
-            <version>1.20.30-r1</version>
+            <version>1.20.40-r1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
